@@ -1,3 +1,16 @@
-== API Lifecycle with 3Scale
+= API Lifecycle with 3Scale
 
-This proof of concept aims to show the lifecycle of an API since the data model, design....
+This proof of concept aims to show the lifecycle of an API since the data model, design of an API, mocking, import in 3Scale pointing to the mocked service, and after promote to the real service.
+
+== Requirements
+
+* The design phase must use an pre defined template.
+* The design should support field validation
+
+== Products and Technologies
+
+* Red Hat Openshift
+* Apicurio (Community)
+* Microcks (Community)
+* Red Hat 3Scale
+* Tekton pipeline
