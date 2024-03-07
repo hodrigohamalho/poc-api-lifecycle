@@ -9,8 +9,37 @@ This proof of concept aims to show the lifecycle of an API since the data model,
 
 == Products and Technologies
 
-* Red Hat Openshift
-* Apicurio (Community)
-* Microcks (Community)
-* Red Hat 3Scale
-* Tekton pipeline
+=== Infrastructure 
+
+* [V] Red Hat Openshift
+* [V] Microcks (Community)
+* [V] Red Hat Service Registry
+* [V] Red Hat 3Scale
+* [X] Apicurio Studio (Community)
+* [X] Tekton pipeline
+
+=== Functional
+
+* Create an API with validations in Apicurio Studio 
+* Mock in Microcks
+* Store in Red Hat Service Registry 
+* Import into 3Scale
+* Automation via Tekton Pipeline
+
+=== Apicurio Studio Features desired
+
+Validation:
+
+* Enum
+* Tag description in the example of the Body Request request/response
+
+== Keycloak
+
+admin
+0lVT3MMGb2DPWA==
+
+== Microcks
+
+admin
+microcks123
+
