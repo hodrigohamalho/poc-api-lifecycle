@@ -1,0 +1,43 @@
+---
+# Use the Microcks Operator to Install Microcks
+
+- name: Install {{ utils_project }} namespace if not exists 
+  k8s:
+    api_version: v1
+    kind: Namespace
+    name: '{{ utils_project }}'
+    state: present
+
+# - name: Install Microcks Operator Group
+#   k8s:
+#     state: present
+#     resource_definition: "{{ lookup('template', 'microcks-operatorgroup.yaml.j2') }}"
+
+# - name: Install Microcks Subscription
+#   k8s:
+#     state: present
+#     resource_definition: "{{ lookup('template', 'microcks-subscription.yaml.j2') }}"
+
+# - name: Wait for Microcks operator to install
+#   k8s_info:
+#     api_version: apiextensions.k8s.io/v1
+#     kind: CustomResourceDefinition
+#     name: microcksinstalls.microcks.github.io
+#   register: crd_microcks
+#   until: crd_microcks.resources | list | length == 1
+#   retries: 10
+#   delay: 30
+
+- name: Install Microcks
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'microcks-install.yaml.j2') }}"    
+
+- name: Wait for Microcks to be running
+  uri:
+    url: https://microcks-{{ utils_project }}.apps.{{ domain }}
+    status_code: '200'
+  register: result
+  until: result.status == 200
+  retries: 90
+  delay: 30    

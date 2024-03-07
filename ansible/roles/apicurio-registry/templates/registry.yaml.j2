@@ -1,0 +1,16 @@
+---
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: service-registry
+  namespace: {{ utils_project }}
+spec:
+  configuration:
+    persistence: "sql"
+    sql: 
+      dataSource:
+        url: "jdbc:postgresql://postgresql.{{ utils_project }}.svc:5432/registry"
+        userName: "postgresuser"
+        password: "postgrespw"
+  deployment:
+    host: "service-registry.apps.{{ domain }}"

@@ -1,0 +1,66 @@
+- hosts: localhost
+  name: Install API Lifecycle Demo
+  vars:
+    cluster_project: demo
+    utils_project: lifecycle
+    grafana_user: admin
+    grafana_password: admin
+    insecure_skip_tls_verify: true
+    threescale_project: demo
+    delete_demo: false
+    storage_class: ocs-external-storagecluster-ceph-rbd
+    prometheusHost: prometheus-operated.openshift-monitoring.svc.cluster.local:9090
+    grafanaSAToken: grafanaSAToken
+  tasks:
+
+    - name: Define domain
+      set_fact:
+        domain : "{{ server | regex_replace('https://api.') | regex_replace(':6443')   }}"
+
+    - name: login as super user with token on OpenShift 4
+      command: "oc login --token={{ token }}  --server={{ server }} --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}"
+      when:
+       - token is defined
+       - server is defined
+      ignore_errors: false
+    
+    - name: Create {{ cluster_project }} Namespace
+      k8s:
+        state: present
+        kind: Project
+        api_version: project.openshift.io/v1
+        definition:
+          metadata:
+            name: "{{ cluster_project }}"
+    
+    # - name: Install Red Hat Single Sign On
+    #   include_role:
+    #     name: rhsso
+
+    # - name: Install AMQ Streams
+    #   include_role:
+    #     name: streams
+
+    # - name: Install Apicurio Registry 
+    #   include_role:
+    #     name: apicurio-registry
+
+    # - name: Provision Microcks
+    #   include_role:
+    #     name: microcks
+
+    - name: Install Threescale API Management
+      include_role:
+        name: threescale
+
+
+    # - name: Install Apicurio Studio
+    #   include_role:
+    #     name: apicurio-studio
+    
+    
+    # - name: Install Monitoring
+    #   include_role:
+    #     name: monitoring
+    
+    

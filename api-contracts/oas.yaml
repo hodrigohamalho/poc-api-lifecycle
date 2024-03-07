@@ -1,0 +1,3037 @@
+openapi: 3.0.1
+info:
+  title: Nombre Producto API - Nombre API
+  version: 0.0.0
+  description: >-
+    Alcance funcional de toda la API. No es preciso entrar en detalles particulares de las operaciones, sino una descripcipon general del contexto funcional.
+  x-ibm-name: nombre-producto-api-nombre-api
+  contact:
+    name: Developers Support
+    email: soporteapisinternas@bank.com.co
+servers:
+  - url: >-
+      https://$(catalog.host)/v?/bian-business-area/business-domain/service-domain/nombre-prducto-api/nombre-api
+paths:
+  /examplePath1:
+    post: # REEMPLAZAR POR VERBO HTTP EN MINÚSCULA; get, post, put, patch. delete...
+      operationId: nombreFuncionalOperacion
+      x-api-type: proxy-jwt
+      summary: >-
+        Alcance funcional de la capacidad/operación resumido. Resaltar lo más esencial.
+      description: >
+        ### Clasificación de la información: Pública, Interna, Restringida, Confidencial
+
+        Alcance funcional de la capacidad/operación adicionando detalles complementarios a lo esencial. NO debe ser igual al "summary".
+      parameters:
+        - name: accept
+          in: header
+          required: true
+          schema:
+            type: string
+          description: application/json, el cual representa el formato de mensajería.
+        - name: message-id
+          in: header
+          required: true
+          schema:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+          description: >-
+            Identificador de transacción. Se recomienda usar un UUID para el
+            valor de este campo.
+          example: "c4e6bd04-5149-11e7-b114-b2f933d5fe66"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/examplePath1Request'
+            examples:
+              min_Required:
+                description: ESCENARIO_DADO_CUANDO_ENTONCES_
+                value:
+                  {
+                      "data": {
+                          "customer": {
+                              "identification": {
+                                  "relationshipId": "some text"
+                              },
+                              "fullName": "some text"
+                          }
+                      }
+                  }
+              complete_Info:
+                  description: ESCENARIO_DADO_CUANDO_ENTONCES_
+                  value:
+                    data:
+                      customer:
+                        identification:
+                          relationshipId: F1E4F933826EE5FF33
+                        fullName: Juan Martin Maya
+        required: true
+      responses:
+        '200':
+          x-success-response: Successfull
+          description: Registro exitoso
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlacion usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Limite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajeria de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/examplePath1Response'
+              examples:
+                minRequired:
+                  value:
+                    data:
+                      meta:
+                        _requestDateTime: '2024-01-26T14:52:09.779Z'
+                        _applicationId: default
+                        _messageId: dbff089d-292d-4894-b842-8e88c7003525
+                      customerId: "10987734037"
+          x-ibm-languages:
+            description:
+              en: Successful response.
+        '400':
+          description: Bad request
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe66
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 400
+                title: Bad Resquest
+                errors:
+                  - code: SA404
+                    detail: >-
+                      La longitud de la parte entera del parametro trackingId es
+                      invalida
+          x-ibm-languages:
+            description:
+              en: Error in the request.
+        '401':
+          description: Credenciales incorrectas.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 401
+                title: Unauthorized
+                errors:
+                  - code: SA401
+                    detail: El consumidor no tiene acceso a la información solicitada
+          x-ibm-languages:
+            description:
+              en: Incorrect credentials.
+        '404':
+          description: Recurso no encontrado.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 404
+                title: Not Found
+                errors:
+                  - code: BP12700891
+                    detail: EL CLIENTE NO TIENE CUENTAS DEL TIPO SOLICITADO
+          x-ibm-languages:
+            description:
+              en: Resource not found.
+        '409':
+          description: >
+            El estado del recurso presenta conflictos con los datos de la
+            solicitud.
+                        #Aqui se debe de poner todos los codigos de error, para la automatizacion
+            Listado de códigos de error
+
+            | code | detail |
+
+            | --------------- | --------------- |
+
+            | BP12700858 | EL NUMERO Y TIPO DE DOCUMENTO NO PERTENECE A UN
+            CLIENTE bank O DE COMERCIO INTERNACIONAL bank |
+
+            | BP12700871 | EL BENEFICIARIO SE ENCUENTRA EN LISTA DE CONTROL |
+
+            | BP12700865 | ERROR EN EL REVERSO DE LA DECLARACION DE CAMBIO |
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              examples:
+                example4:
+                        value:
+                          data:
+                           meta:
+                            _requestDateTime: '2024-01-26T14:52:09.779Z'
+                            _applicationId: default
+                            _messageId: dbff089d-292d-4894-b842-8e88c7003525
+                           status: 409
+                           title: Conflict
+                           errors:
+                            - code: BP20251
+                              detail: Estado del recurso no permite la acción requerida
+          x-ibm-languages:
+            description:
+              en: Resource state has conflicts with data of the request.
+        '500':
+          description: Error interno del servidor.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 500
+                title: Internal Server Error
+                errors:
+                  - code: SP500
+                    detail: Ha ocurrido un error interno controlado en el servidor.
+          x-ibm-languages:
+            description:
+              en: Internal server error.
+        '502':
+          description: Error en la respuesta del proveedor del servicio.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 502
+                title: Bad Gateway
+                errors:
+                  - code: SP502
+                    detail: El mensaje de respuesta recibido del servidor es inválido
+          x-ibm-languages:
+            description:
+              en: Error in the service provider response.
+        '503':
+          description: Servicio no disponible.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 503
+                title: Service Unavailable
+                errors:
+                  - code: SP503
+                    detail: >-
+                      Por problemas tecnicos su transaccion no pudo atenderse en
+                      estos momentos, por favor intente mas tarde
+          x-ibm-languages:
+            description:
+              en: Service unavailable.
+        '504':
+          description: Tiempo de respuesta del proveedor del servicio excedido.
+          headers:
+            Message-Id:
+              description: >-
+                Identificador del mensaje o de correlación usado para la
+                trazabilidad de los llamados a las APIs.
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: >-
+                      Message identifier or correlation identifier used for the
+                      traceability of the API calls.
+            RateLimit-Limit:
+              description: Límite de solicitudes por intervalo de tiempo
+              schema:
+                type: number
+                x-ibm-languages:
+                  description:
+                    en: Resquest limit per time interval.
+            Content-Type:
+              description: 'Formato de mensajería de la API. Ejemplo: application/json.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API message format. Example: application/json.'
+            API-Version:
+              description: 'Version de la API. Ejemplo: 1.0.0.'
+              schema:
+                type: string
+                x-ibm-languages:
+                  description:
+                    en: 'API Version. Example: 1.0.0.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/failure'
+              example:
+                meta:
+                  _messageId: c4e6bd04-5149-11e7-b114-b2f933d5fe68
+                  _requestDateTime: 2017-01-24T05:00:00.000Z
+                  _applicationId: acxff62e-6f12-42de-9012-3e7304418abd
+                status: 504
+                title: Gateway Timeout
+                errors:
+                  - code: SP504
+                    detail: El proveedor no respondió en tiempo esperado
+          x-ibm-languages:
+            description:
+              en: Service provider response time exceeded.
+      security:
+        - clientSecret: []
+          clientId: []
+      x-codegen-request-body-name: requestBody
+      tags:
+        - Example Tag1
+  /health:
+    head:
+      summary: Metodo que permite monitorear la API
+      operationId: healthOperation
+      responses:
+        '200':
+          description: Respuesta exitosa.
+          x-ibm-languages:
+            description:
+              en: Successful response.
+      security:
+        - clientId: []
+          clientSecret: []
+      tags:
+        - Monitoring
+components:
+  schemas:
+    examplePath1Request:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - customer
+          properties:
+            customer:
+              $ref: '#/components/schemas/customer'
+    identification:
+      type: object
+      description: Información que relaciona la cuenta vinculada por el cliente
+      required:
+        - relationshipId
+      properties:
+        relationshipId:
+          type: string
+          description: >-
+            identificador de la relacion de autorizacion establecida entre el
+            tercero y el cliente para un producto específico
+          minLength: 1
+          maxLength: 33
+          example: F1E4F933826EE5FF33
+    examplePath1Response:
+      type: object
+      required:
+        - meta
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        data:
+          type: object
+          required:
+            - message
+          properties:
+            customerId:
+              type: string
+              description: Identificador único del cliente registrado
+              minLength: 10
+              maxLength: 150
+              example: "1093456378"
+    customer:
+      type: object
+      description: Datos de cliente
+      required:
+        - identification
+      properties:
+        identification:
+          $ref: '#/components/schemas/identification'
+        fullName:
+          type: string
+          maxLength: 200
+          example: Juan Martin Maya Echeverry
+          description: Nombre completo del cliente
+    meta:
+      required:
+        - _applicationId
+        - _messageId
+        - _requestDateTime
+      type: object
+      properties:
+        _messageId:
+          type: string
+          example: 56d6adc5-b25a-4d75-a663-56a62bad4982
+        _requestDateTime:
+          type: string
+          format: date-time
+          example: 2016-06-23T16:07:21.205Z
+        _applicationId:
+          type: string
+          example: acxff62e-6f12-42de-9012-3e7304418abd
+      description: Datos de trazabilidad e informacion técnica del mensaje.
+    failure:
+      required:
+        - errors
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        status:
+          type: number
+          description: >-
+            Codigo de estado HTTP (status code) asociado al mensaje de error de
+            la respuesta del llamado a la API.
+          example: 404
+        title:
+          type: string
+          description: >-
+            Titulo asociado al codigo de estado HTTP (status code) asociado al
+            mensaje de error de la respuesta del llamado a la API.
+          example: Not Found
+        errors:
+          type: array
+          description: Lista de errores detectados
+          items:
+            $ref: '#/components/schemas/error'
+      description: Mensaje de respuesta cuando ocurre un error.
+    error:
+      required:
+        - code
+        - detail
+      type: object
+      properties:
+        code:
+          type: string
+          description: An application-specific error code, expressed as a string value.
+          example: BP404
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+          example: Requested resource could not be found
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: Client-Id
+      x-key-type: client_id
+    clientSecret:
+      type: apiKey
+      in: header
+      name: Client-Secret
+      x-key-type: client_secret
+tags:
+  - name: Monitoring
+    description: Operaciones para realizar el monitoreo de la API
+  - name: Example Tag1
+    description: >-
+      Descripción de Subdominio o Recurso en común que de cierta forma permite agrupar operaciones (paths).
+x-ibm-configuration:
+  compatibility:
+    enforce-required-params: false
+    request-headers: true
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  phase: realized
+  properties:
+    kid:
+      description: ''
+      encoded: false
+    issuer:
+      value: https://api-aws-dev.apps.ambientesbc.com/
+      description: ''
+      encoded: false
+    expTime:
+      description: Tiempo de expiración del JWT
+    sub:
+      value: api-connect-communication-management
+      encoded: false
+    tokenUse:
+      value: access
+      encoded: false
+    clientId:
+      value: api-connect-communication-management
+      encoded: false
+    scope:
+      value: communication-management
+      encoded: false
+    endpoint:
+      value: ''
+      description: ''
+      encoded: false
+    tlsProfile:
+      value: ''
+      description: ''
+      encoded: false
+    catalogName:
+      value: ''
+      description: ''
+      encoded: false
+    hostName:
+      value: ''
+      description: ''
+      encoded: false
+  catalogs:
+    Development:
+      properties:
+        expTime: '20'
+        kid: gw-aws-ecosistemas-de-riesgos-jwt
+        issuer: https://api-aws-dev.apps.ambientesbc.com
+        tlsProfile: apic-tls-profile-aws-ecosistemas-de-riesgos-eks-jwt
+        endpoint: https://esbdev.bank.corp:3300/ESB/SOAP/Default
+        hostName: http://bank.com.co
+        sub: api-connect-communication-management
+        tokenUse: access
+        clientId: api-connect-communication-management
+        scope: communication-management
+    Testing:
+      properties:
+        expTime: '19'
+        kid: gw-aws-ecosistemas-de-riesgos-jwt-QA
+        issuer: https://api-aws-dev.apps.ambientesbc.com
+        tlsProfile: apic-tls-profile-aws-ecosistemas-de-riesgos-eks-jwt
+        endpoint: https://esbdev.bank.corp:3300/ESB/SOAP/Default
+        hostName: http://bank.com.co
+        sub: api-connect-communication-management
+        tokenUse: access
+        clientId: api-connect-communication-management
+        scope: communication-management
+    Sandbox:
+      properties:
+        expTime: '5'
+        kid: gw-aws-ecosistemas-de-riesgos-jwt-DEV
+        issuer: https://api-aws-dev.apps.ambientesbc.com
+        tlsProfile: apic-tls-profile-aws-ecosistemas-de-riesgos-eks-jwt
+        endpoint: https://esbdev.bank.corp:3300/ESB/SOAP/Default
+        hostName: http://bank.com.co
+        sub: api-connect-communication-management
+        tokenUse: access
+        clientId: api-connect-communication-management
+        scope: communication-management
+    Production:
+      properties:
+        expTime: '1'
+        kid: gw-aws-ecosistemas-de-riesgos-jwt-PDN
+        issuer: https://api-aws-dev.apps.ambientesbc.com
+        tlsProfile: apic-tls-profile-aws-ecosistemas-de-riesgos-eks-jwt
+        endpoint: https://esbdev.bank.corp:3300/ESB/SOAP/Default
+        hostName: http://bank.com.co
+        sub: api-connect-communication-management
+        tokenUse: access
+        clientId: api-connect-communication-management
+        scope: communication-management
+  type: rest
+  gateway: datapower-api-gateway
+  activity-log:
+    enabled: true
+    success-content: payload
+    error-content: payload
+  assembly:
+    execute:
+      - switch:
+          title: switch
+          case:
+            - condition: ($operationID() = 'enroll')
+              execute:
+                - gatewayscript:
+                    title: validate-request
+                    source: >-
+                      const errors = [];      
+
+
+                      validateParameters();
+                            
+                      function validateParameters() {
+                        try {
+                          const app = context.get('client.app.name').trim();
+                          const consumerId = getConsumer(app);
+                          context.set('ctx.consumer', consumerId);
+                            
+                          const requestHeaders = context.get('request.headers');
+                          const headerConstraints = {"json-web-token":{"in":"header","name":"json-web-token","required":true,"type":"string"},"x-client-certificate":{"in":"header","name":"x-client-certificate","required":true,"type":"string"},"authorization":{"in":"header","name":"authorization","required":true,"type":"string"},"ip":{"in":"header","name":"ip","required":true,"type":"string"},"device-id":{"in":"header","name":"device-id","required":true,"type":"string"},"strong-authentication":{"in":"header","name":"strong-authentication","required":true,"type":"boolean"},"accept":{"in":"header","name":"accept","required":true,"type":"string"},"message-id":{"in":"header","name":"message-id","required":true,"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"}};
+                          validateRequestHeaders(headerConstraints, requestHeaders);
+                          const bodyConstraints = {"requestBody":{"type":"object","properties":{"data":{"type":"object","properties":{"customer":{"type":"object","properties":{"identification":{"type":"object","properties":{"relationshipId":{"type":"string","maxLength":33,"minLength":1}},"required":["relationshipId"]}},"required":["identification"]},"currencyExchangeSubscription":{"type":"object","properties":{"exchangeNumeral":{"type":"object","properties":{"numeralCode":{"type":"integer","format":"int32","maximum":9999,"minimum":0}},"required":["numeralCode"]},"additionalInformation":{"type":"object","properties":{"addressInformation":{"type":"object","properties":{"stateCode":{"type":"string","maxLength":10,"minLength":1},"cityCode":{"type":"string","maxLength":10,"minLength":1},"address":{"type":"string","maxLength":60,"minLength":1}},"required":["stateCode","cityCode","address"]},"financialInformation":{"type":"object","properties":{"economicActivityCode":{"type":"string","maxLength":20,"minLength":1},"monthlyExpenses":{"type":"number","format":"double","maximum":9999999999999.99},"monthlyIncome":{"type":"number","format":"double","maximum":9999999999999.99}},"required":["economicActivityCode","monthlyExpenses","monthlyIncome"]}},"required":["addressInformation","financialInformation"]}},"required":["exchangeNumeral"]},"security":{"type":"object","properties":{"confirmId":{"type":"string","maxLength":2000,"minLength":1}},"required":["confirmId"]}},"required":["customer","currencyExchangeSubscription","security"]}},"required":["data"]}};
+                          const getRequestBody = new Promise((resolve, reject) => {
+                            context.message.body.readAsJSON((error, json) => (error) ?
+                              reject(error) :
+                              resolve(json));
+                          });
+
+                          const requestBodyValidation = (requestBody) => {
+                            validateTags(bodyConstraints, requestBody);
+                            
+                            if (errors.length > 0) {
+                              context.set('ctx.errors', errors);
+                              throwParameterError('ParametersException');
+                            }
+                          }
+
+                          getRequestBody.then(requestBodyValidation, handleError);
+                          
+
+                          if (errors.length > 0) {
+                            context.set('ctx.errors', errors);
+                            throwParameterError('ParametersException');
+                          }
+
+                        } catch (e) {
+                          handleError(e)
+                        }
+                      }
+                              
+                      function validateRequestHeaders(constraints,
+                      requestHeaders) {
+                          const constraintsTags = Object.entries(constraints);
+                          const validation = (constraintsTags.map((constraint) => {
+                            const [constraintName, constraintValue] = constraint;
+                            const tagToValidate = Object.entries(requestHeaders)
+                              .find(tag => tag[0].toUpperCase() === constraintName.toUpperCase());
+                            if (!tagToValidate) {
+                              const detail = `Parámetro ${constraintName} es requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            return validatePrimitives(constraintValue, tagToValidate);
+                          })).every(Boolean) ? true : false;
+                          return validation;
+                        }
+
+                      function validateTags(constraints, request) {
+                          let validation;
+                          const tagConstraints = Object.entries(constraints);
+                          const requestTagNames = Object.keys(request);
+
+                          tagConstraints.forEach((tagConstraint) => {
+                            const [tagConstraintName, tagConstraintValue] = tagConstraint;
+
+                            if (tagConstraintValue.properties ||
+                              (tagConstraintValue.items && tagConstraintValue.items.properties)) {
+                              const { required, properties } = (tagConstraintValue.properties)
+                                ? tagConstraintValue
+                                : tagConstraintValue.items;
+
+                              const validTagNames = Object.keys(properties);
+
+                              if (required) {
+                                validateRequiredTags(required, requestTagNames);
+                              }
+
+                              validation = (requestTagNames.map((requestTagName) => {
+                                return validateTag(validTagNames, requestTagName, properties,
+                                  request[requestTagName]);
+
+                              })).every(Boolean) ? true : false;
+                            } else {
+                              if (tagConstraintValue.required && !requestTagNames.includes(tagConstraintName)) {
+                                const detail = `Parámetro ${tagConstraintName} requerido.`;
+                                const code = 'SA400';
+                                errors.push({ code, detail });
+                              } else {
+                                const requestTagTovalidate = Object.entries(request)
+                                  .filter((recuestField) => recuestField[0] === tagConstraintName);
+                                if (requestTagTovalidate) {
+                                  validation = validatePrimitives(
+                                    constraints[tagConstraintName],
+                                    requestTagTovalidate[0]
+                                  );
+                                }
+                              }
+                            }
+                          });
+                          return validation;
+                        }
+
+                      function validateTag(validTagNames, requestTagName,
+                      constraints, requestObject) {
+                          if (!validTagNames.includes(requestTagName)) {
+                            const detail = `Parámetro ${requestTagName} no es un tag válido`;
+                            const code = 'SA400';
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const tagConstraint = {};
+                          if (Array.isArray(requestObject)) {
+                            if (typeof requestObject[0] !== 'object') {
+                              return validatePrimitives(
+                                constraints[requestTagName],
+                                [requestTagName, requestObject]
+                              );
+                            }
+                            return (requestObject.map((item) => {
+                              tagConstraint[requestTagName] = constraints[requestTagName];
+                              return validateTags(tagConstraint, item);
+                            })).every(Boolean) ? true : false;
+                          }
+
+                          if (typeof requestObject !== 'object') {
+                            return validatePrimitives(
+                              constraints[requestTagName],
+                              [requestTagName, requestObject]
+                            );
+                          }
+                          tagConstraint[requestTagName] = constraints[requestTagName];
+                          return validateTags(tagConstraint, requestObject);
+                        }
+
+                      function validateRequiredTags(requiredTags,
+                      requestTagNames) {
+                          requiredTags.forEach((requiredTag) => {
+                            if (!requestTagNames.includes(requiredTag)) {
+                              const detail = `Parámetro ${requiredTag} requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                            }
+                          });
+                        }
+
+                      function validatePrimitives(constraint, entrie) {
+                          const value = entrie[1];
+                          const isArray = Array.isArray(value);
+                          if (isArray) {
+                            if (value.length < 1) {
+                              const code = 'SA400';
+                              const detail = `El arreglo ${entrie[0]} debe tener por lo mennos un valor`;
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            if (constraint.items.type === 'string') {
+                              return validateStringArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'number') {
+                              return validateNumberArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'integer') {
+                              return validateIntegerArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'boolean') {
+                              return validateBooleanArray(constraint.items, entrie);
+                            }
+                          }
+                          if (constraint.type === 'string') {
+                            return validateString(constraint, entrie);
+                          }
+                          if (constraint.type === 'number') {
+                            return validateNumber(constraint, entrie);
+                          }
+                          if (constraint.type === 'integer') {
+                            return validateInteger(constraint, entrie);
+                          }
+                          if (constraint.type === 'boolean') {
+                            return validateBoolean(constraint, entrie);
+                          }
+                        }
+
+                      function validateString(constraint, entrie) {
+                          const code = 'SA400';
+                          const type = 'string';
+                          const [name, value] = entrie;
+                          const { minLength, maxLength, pattern } = constraint;
+                          const enumConstraints = constraint.enum;
+                          const validPattern = (pattern) ? new RegExp(pattern) : null;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo ${type}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (validPattern && !validPattern.test(value)) {
+                            const detail = `El valor del parámetro ${name} no cumple con la expresión regular`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (minLength && value.length < minLength) {
+                            const detail = `Longitud del parámetro ${name} es menor a la lógitud mínima esperada: ${minLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (maxLength && value.length > maxLength) {
+                            const detail = `Longitud del parámetro ${name} es mayor a la lógitud máxima esperada: ${maxLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+
+                          return true;
+                        }
+
+                      function validateStringArray(constraint, tagToValidate) {
+                          const [parameterName, arrayString] = tagToValidate;
+                          return (arrayString.map(stringValue =>
+                            validateString(constraint, [parameterName, stringValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function countDigits(number) {
+                          const numberString = number.toString();
+                          const [integers, decimals = ''] = numberString.split('.');
+                          return { integers: integers.length, decimals: decimals.length };
+                        }
+
+                      function validateNumber(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo double`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const { integers, decimals } = countDigits(value);
+                          const { integers: expectedIntegers, decimals: expectedDecimals } = countDigits(maximum);
+                          const expectedDigitsValidation = integers <= expectedIntegers && decimals <= expectedDecimals;
+                          if (!expectedDigitsValidation) {
+                            const detail = `El valor del parámetro ${name} espera máximo ${expectedIntegers} dígitos enteros y máximo ${expectedDecimals} dígitos decimales`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateNumberArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateNumber(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateInteger(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { minimum, maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo integer`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value < minimum) {
+                            const detail = `El valor del parámetro ${name} es menor que el valor permitido: ${minimum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value > maximum) {
+                            const detail = `El valor del parámetro ${name} es mayor que el valor permitido: ${maximum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateIntegerArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateInteger(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateBoolean(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { type } = constraint;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo boolean`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateBooleanArray(constraint, tagToValidate) {
+                          const [parameterName, arrayBoolean] = tagToValidate;
+                          return (arrayBoolean.map(booleanValue => validateBoolean(constraint, [parameterName,
+                            booleanValue]))).every(Boolean) ? true : false;
+                        }
+
+                      function getConsumer(appName) {
+                          try {
+                            const consumerId = appName.split('-')[1];
+                            if (!consumerId) {
+                              const detail = 'Identificación de aplicación inválida';
+                              const code = 'SA409';
+                              errors.push({ code, detail });
+                              context.set('ctx.errors', errors);
+                            }
+                            return consumerId;
+                          } catch (exception) {
+                            const detail = 'Identificación de aplicación inválida';
+                            const code = 'SA409';
+                            errors.push({ code, detail });
+                            context.set('ctx.errors', errors);
+                          }
+                        }
+
+                      function handleError(e) {
+                          const detail = e.message;
+                          const code = 'SA500';
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwParameterError('ParametersException');
+                        }
+
+                      function throwParameterError(errorName) {
+                          const description = 'Bad Request';
+                          const code = '400';
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                          context.message.statusCode = code;
+                        }
+                    description: >-
+                      Se realiza la validación de los parámetros del query de la
+                      solicitud del método.
+                    version: 2.0.0
+                - xslt:
+                    title: xslt
+                    source: |-
+                      <?xml version="1.0" encoding="UTF-8"?>
+                      <xsl:stylesheet version="1.0"
+                          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                          xmlns:apigw="http://www.ibm.com/xmlns/datapower/2017/11/apigateway"
+                          xmlns:dp="http://www.datapower.com/extensions"
+                          extension-element-prefixes="dp apigw"
+                          exclude-result-prefixes="dp apigw xsl">
+                          
+                          <xsl:template match="/">
+                          
+                            <xsl:variable name="certificateDetails" select="dp:get-cert-details(concat('cert:',substring-before(substring-after(dp:request-header('X-Client-Certificate'),'-----BEGIN CERTIFICATE-----'),'-----END CERTIFICATE-----')))"/>
+                          
+                          
+                            <xsl:variable name="modulus" select="string($certificateDetails/*[local-name()='CertificateDetails']/*[local-name()='KeyValue']/*[local-name()='RSAKeyValue']/*[local-name()='Modulus'])" />
+                            <xsl:variable name="exponent" select="string($certificateDetails/*[local-name()='CertificateDetails']/*[local-name()='KeyValue']/*[local-name()='RSAKeyValue']/*[local-name()='Exponent'])" />
+                          
+                            <apigw:set-variable name="'ctx.modulus'" value="$modulus"/>
+                            <apigw:set-variable name="'ctx.exponent'" value="$exponent"/>
+                                  
+                          </xsl:template>
+                      </xsl:stylesheet>
+                    description: >-
+                      Obtain Modulus and Exponent from Certificate sended via
+                      Http Header
+                    compile-settings: {}
+                    version: 2.0.0
+                    input: false
+                - gatewayscript:
+                    title: set-jwk
+                    source: >-
+                      buildJWK();
+
+
+                      function buildJWK() {
+                          try {
+                              //Se obtienen los datos del certificado que llega en la solicitud el Modulus y el Exponent con el que se arma la llave pública
+                              const modulus = context.get("ctx.modulus");
+                              const exponent = context.get("ctx.exponent");
+                          
+                              if (!modulus) {
+                                  throw new Error("Error con la lectura del modulus");
+                              }
+
+                              if (!exponent) {
+                                  throw new Error("Error con la lectura del exponent");
+                              }
+                              
+                              //Se arma el JWK que representa de la llave pública
+                              const jwkPublicKey = {
+                                  n: modulus,
+                                  e: exponent,
+                                  kty: "RSA"
+                              }
+
+                              context.set("ctx.jwk", JSON.stringify(jwkPublicKey));
+                          } catch (error) {
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                      }
+                    description: Asignación del JWK
+                    version: 2.0.0
+                - jwt-validate:
+                    title: jwt-validate
+                    jwt: request.headers.json-web-token
+                    output-claims: ctx.claims
+                    version: 2.0.0
+                    iss-claim: .+
+                    aud-claim: APIGateway_LAN
+                    jws-jwk: ctx.jwk
+                - gatewayscript:
+                    title: validation-error-jwt
+                    source: >-
+                      validateCredentials();
+
+
+                      function validateCredentials() {
+                          
+                          const errors = [];
+                          
+                          try {
+                              const app = context.get('client.app.name');
+                              const appName = app.trim();
+                              const claims = context.get("ctx.claims");
+                              const name = appName.toUpperCase().split('-');
+                              const ident = name[1];
+                              const iss = claims.iss;
+                              const jwtTimeExpired = context.get("jwtTimeExpired");
+                              const today = (new Date() / 1000) + 60;
+                              const code = 'SA401';
+                              let detail;
+                          
+                              //validate AW
+                              if (iss != ident) {
+                                  detail = "Invalid Credentials";
+                                  errors.push({ code, detail });
+                              }
+                          
+                              if ((claims.exp - claims.iat) > jwtTimeExpired) {
+                                  detail = "Invalid Credentials time expired invalid";
+                                  errors.push({ code, detail });
+                              }
+                          
+                              if (claims.iat > today) {
+                                  detail = "Invalid Credentials iat future";
+                                  errors.push({ code, detail });
+                              }
+                          
+                              if (errors.length > 0) {
+                                  context.set('ctx.errors', errors);
+                                  throwError({ errorName: "ParametersException", description: "Unauthorized", code: 401 })
+                              }
+                          
+                          } catch (error) {
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description); 
+                      }
+                    description: Valida si hay algún error en el JWT
+                    version: 2.0.0
+                - gatewayscript:
+                    title: jwt-generator
+                    source: >-
+                      buildJWT();
+
+
+                      function buildJWT(){
+                          try{
+                              //Importa los módulos de la plataforma para manejo de JWT
+                              const jwt = require('jwt');
+                              const jose = require('jose');
+                                      
+                              //Obtiene el tiempo actual del sistema 
+                              const dateTime = parseInt(new Date() / 1000)
+                                      
+                              //Genera payload/claims del JWT
+                              const claims = {
+                                  'iss': context.get("api.properties.issuer"),
+                                  'sub': context.get("api.properties.sub"),
+                                  'token_use': context.get("api.properties.tokenUse"),
+                                  'client_id': context.get("api.properties.clientId"),
+                                  'scope': context.get("api.properties.scope"),
+                                  'exp': dateTime + Number.parseInt(context.get("api.properties.expTime")), // 3600 preproductivos y 120 producción
+                                  'iat': dateTime
+                              };
+                                      
+                              //Construye el nombre interno que le da la plataforma a la llave privada del TLS Profile
+                              const orgName = context.get("api.org.name");
+                              const tlsProfileName = context.get("api.properties.tlsProfile"); //Nombre del TLS Profile que contiene la llave privada 
+                              const catalogName = context.get("api.catalog.name");
+                              const privateKeyName = orgName+"_"+catalogName +"_tlsp-"+tlsProfileName+'V1.0.0-key'; //Concatena todo con los prefijos y sufijos que asigna la plataforma
+                                      
+                              //Construye el header para el JWT
+                              const jwsHdr = jose.createJWSHeader(privateKeyName, 'RS256');
+                              jwsHdr.setProtected('kid', context.get("api.properties.kid")).setProtected('typ', 'JWT');
+                                      
+                              //Prepara el payload/claims y header para firmar el JWT
+                              const encoder = new jwt.Encoder(claims);
+                              encoder.addOperation('sign', jwsHdr); 
+                                      
+                              //Firma el JWT y lo asigna en el header de autorización
+                              encoder.encode(function (error, jwtToken) { 
+                                  context.set('message.headers.Authorization', 'Bearer '+ jwtToken);
+                              });
+                          }catch(error){
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                      }
+                    description: Generación de JWT usando un TLS Client Profile
+                    version: 2.0.0
+                - invoke:
+                    title: invoke
+                    verb: POST
+                    timeout: 5
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error:
+                      - ConnectionError
+                      - OperationError
+                    version: 2.2.0
+                    tls-profile: $(tlsProfile)
+                    target-url: $(endpoint)$(api.operation.path)
+                - parse:
+                    title: parse
+                    version: 2.1.0
+                    parse-settings-reference:
+                      default: apic-default-parsesettings
+                - validate:
+                    title: validate
+                    version: 2.6.0
+                    graphql-error-policy: none
+                    compile-settings: {}
+                    validate-against: definition
+                    definition: '#/components/schemas/enrollResponse'
+            - condition: ($operationID() = 'registerAcceptanceTerms')
+              execute:
+                - gatewayscript:
+                    title: validate-request
+                    source: >-
+                      const errors = [];      
+
+
+                      validateParameters();
+                            
+                      function validateParameters() {
+                        try {
+                          const app = context.get('client.app.name').trim();
+                          const consumerId = getConsumer(app);
+                          context.set('ctx.consumer', consumerId);
+                            
+                          const requestHeaders = context.get('request.headers');
+                          const headerConstraints = {"authorization":{"in":"header","name":"authorization","required":true,"type":"string"},"ip":{"in":"header","name":"ip","required":true,"type":"string"},"device-id":{"in":"header","name":"device-id","required":true,"type":"string"},"accept":{"in":"header","name":"accept","required":true,"type":"string"},"message-id":{"in":"header","name":"message-id","required":true,"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"}};
+                          validateRequestHeaders(headerConstraints, requestHeaders);
+                          const bodyConstraints = {"requestBody":{"type":"object","properties":{"data":{"type":"object","properties":{"customer":{"type":"object","properties":{"identification":{"type":"object","properties":{"relationshipId":{"type":"string","maxLength":33,"minLength":1}},"required":["relationshipId"]}},"required":["identification"]},"termsConditionAccepted":{"type":"object","properties":{"productTermsAccepted":{"type":"object","properties":{"version":{"type":"string","maxLength":6,"minLength":1},"acceptance":{"type":"boolean"}},"required":["version","acceptance"]},"clausesCustomerAccepted":{"type":"object","properties":{"version":{"type":"string","maxLength":6,"minLength":1},"acceptance":{"type":"boolean"}},"required":["version","acceptance"]}},"required":["productTermsAccepted","clausesCustomerAccepted"]},"security":{"type":"object","properties":{"confirmId":{"type":"string","maxLength":2000,"minLength":1}},"required":["confirmId"]}},"required":["customer","termsConditionAccepted","security"]}},"required":["data"]}};
+                          const getRequestBody = new Promise((resolve, reject) => {
+                            context.message.body.readAsJSON((error, json) => (error) ?
+                              reject(error) :
+                              resolve(json));
+                          });
+
+                          const requestBodyValidation = (requestBody) => {
+                            validateTags(bodyConstraints, requestBody);
+                            
+                            if (errors.length > 0) {
+                              context.set('ctx.errors', errors);
+                              throwParameterError('ParametersException');
+                            }
+                          }
+
+                          getRequestBody.then(requestBodyValidation, handleError);
+                          
+
+                          if (errors.length > 0) {
+                            context.set('ctx.errors', errors);
+                            throwParameterError('ParametersException');
+                          }
+
+                        } catch (e) {
+                          handleError(e)
+                        }
+                      }
+                              
+                      function validateRequestHeaders(constraints,
+                      requestHeaders) {
+                          const constraintsTags = Object.entries(constraints);
+                          const validation = (constraintsTags.map((constraint) => {
+                            const [constraintName, constraintValue] = constraint;
+                            const tagToValidate = Object.entries(requestHeaders)
+                              .find(tag => tag[0].toUpperCase() === constraintName.toUpperCase());
+                            if (!tagToValidate) {
+                              const detail = `Parámetro ${constraintName} es requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            return validatePrimitives(constraintValue, tagToValidate);
+                          })).every(Boolean) ? true : false;
+                          return validation;
+                        }
+
+                      function validateTags(constraints, request) {
+                          let validation;
+                          const tagConstraints = Object.entries(constraints);
+                          const requestTagNames = Object.keys(request);
+
+                          tagConstraints.forEach((tagConstraint) => {
+                            const [tagConstraintName, tagConstraintValue] = tagConstraint;
+
+                            if (tagConstraintValue.properties ||
+                              (tagConstraintValue.items && tagConstraintValue.items.properties)) {
+                              const { required, properties } = (tagConstraintValue.properties)
+                                ? tagConstraintValue
+                                : tagConstraintValue.items;
+
+                              const validTagNames = Object.keys(properties);
+
+                              if (required) {
+                                validateRequiredTags(required, requestTagNames);
+                              }
+
+                              validation = (requestTagNames.map((requestTagName) => {
+                                return validateTag(validTagNames, requestTagName, properties,
+                                  request[requestTagName]);
+
+                              })).every(Boolean) ? true : false;
+                            } else {
+                              if (tagConstraintValue.required && !requestTagNames.includes(tagConstraintName)) {
+                                const detail = `Parámetro ${tagConstraintName} requerido.`;
+                                const code = 'SA400';
+                                errors.push({ code, detail });
+                              } else {
+                                const requestTagTovalidate = Object.entries(request)
+                                  .filter((recuestField) => recuestField[0] === tagConstraintName);
+                                if (requestTagTovalidate) {
+                                  validation = validatePrimitives(
+                                    constraints[tagConstraintName],
+                                    requestTagTovalidate[0]
+                                  );
+                                }
+                              }
+                            }
+                          });
+                          return validation;
+                        }
+
+                      function validateTag(validTagNames, requestTagName,
+                      constraints, requestObject) {
+                          if (!validTagNames.includes(requestTagName)) {
+                            const detail = `Parámetro ${requestTagName} no es un tag válido`;
+                            const code = 'SA400';
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const tagConstraint = {};
+                          if (Array.isArray(requestObject)) {
+                            if (typeof requestObject[0] !== 'object') {
+                              return validatePrimitives(
+                                constraints[requestTagName],
+                                [requestTagName, requestObject]
+                              );
+                            }
+                            return (requestObject.map((item) => {
+                              tagConstraint[requestTagName] = constraints[requestTagName];
+                              return validateTags(tagConstraint, item);
+                            })).every(Boolean) ? true : false;
+                          }
+
+                          if (typeof requestObject !== 'object') {
+                            return validatePrimitives(
+                              constraints[requestTagName],
+                              [requestTagName, requestObject]
+                            );
+                          }
+                          tagConstraint[requestTagName] = constraints[requestTagName];
+                          return validateTags(tagConstraint, requestObject);
+                        }
+
+                      function validateRequiredTags(requiredTags,
+                      requestTagNames) {
+                          requiredTags.forEach((requiredTag) => {
+                            if (!requestTagNames.includes(requiredTag)) {
+                              const detail = `Parámetro ${requiredTag} requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                            }
+                          });
+                        }
+
+                      function validatePrimitives(constraint, entrie) {
+                          const value = entrie[1];
+                          const isArray = Array.isArray(value);
+                          if (isArray) {
+                            if (value.length < 1) {
+                              const code = 'SA400';
+                              const detail = `El arreglo ${entrie[0]} debe tener por lo mennos un valor`;
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            if (constraint.items.type === 'string') {
+                              return validateStringArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'number') {
+                              return validateNumberArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'integer') {
+                              return validateIntegerArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'boolean') {
+                              return validateBooleanArray(constraint.items, entrie);
+                            }
+                          }
+                          if (constraint.type === 'string') {
+                            return validateString(constraint, entrie);
+                          }
+                          if (constraint.type === 'number') {
+                            return validateNumber(constraint, entrie);
+                          }
+                          if (constraint.type === 'integer') {
+                            return validateInteger(constraint, entrie);
+                          }
+                          if (constraint.type === 'boolean') {
+                            return validateBoolean(constraint, entrie);
+                          }
+                        }
+
+                      function validateString(constraint, entrie) {
+                          const code = 'SA400';
+                          const type = 'string';
+                          const [name, value] = entrie;
+                          const { minLength, maxLength, pattern } = constraint;
+                          const enumConstraints = constraint.enum;
+                          const validPattern = (pattern) ? new RegExp(pattern) : null;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo ${type}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (validPattern && !validPattern.test(value)) {
+                            const detail = `El valor del parámetro ${name} no cumple con la expresión regular`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (minLength && value.length < minLength) {
+                            const detail = `Longitud del parámetro ${name} es menor a la lógitud mínima esperada: ${minLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (maxLength && value.length > maxLength) {
+                            const detail = `Longitud del parámetro ${name} es mayor a la lógitud máxima esperada: ${maxLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+
+                          return true;
+                        }
+
+                      function validateStringArray(constraint, tagToValidate) {
+                          const [parameterName, arrayString] = tagToValidate;
+                          return (arrayString.map(stringValue =>
+                            validateString(constraint, [parameterName, stringValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function countDigits(number) {
+                          const numberString = number.toString();
+                          const [integers, decimals = ''] = numberString.split('.');
+                          return { integers: integers.length, decimals: decimals.length };
+                        }
+
+                      function validateNumber(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo double`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const { integers, decimals } = countDigits(value);
+                          const { integers: expectedIntegers, decimals: expectedDecimals } = countDigits(maximum);
+                          const expectedDigitsValidation = integers <= expectedIntegers && decimals <= expectedDecimals;
+                          if (!expectedDigitsValidation) {
+                            const detail = `El valor del parámetro ${name} espera máximo ${expectedIntegers} dígitos enteros y máximo ${expectedDecimals} dígitos decimales`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateNumberArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateNumber(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateInteger(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { minimum, maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo integer`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value < minimum) {
+                            const detail = `El valor del parámetro ${name} es menor que el valor permitido: ${minimum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value > maximum) {
+                            const detail = `El valor del parámetro ${name} es mayor que el valor permitido: ${maximum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateIntegerArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateInteger(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateBoolean(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { type } = constraint;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo boolean`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateBooleanArray(constraint, tagToValidate) {
+                          const [parameterName, arrayBoolean] = tagToValidate;
+                          return (arrayBoolean.map(booleanValue => validateBoolean(constraint, [parameterName,
+                            booleanValue]))).every(Boolean) ? true : false;
+                        }
+
+                      function getConsumer(appName) {
+                          try {
+                            const consumerId = appName.split('-')[1];
+                            if (!consumerId) {
+                              const detail = 'Identificación de aplicación inválida';
+                              const code = 'SA409';
+                              errors.push({ code, detail });
+                              context.set('ctx.errors', errors);
+                            }
+                            return consumerId;
+                          } catch (exception) {
+                            const detail = 'Identificación de aplicación inválida';
+                            const code = 'SA409';
+                            errors.push({ code, detail });
+                            context.set('ctx.errors', errors);
+                          }
+                        }
+
+                      function handleError(e) {
+                          const detail = e.message;
+                          const code = 'SA500';
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwParameterError('ParametersException');
+                        }
+
+                      function throwParameterError(errorName) {
+                          const description = 'Bad Request';
+                          const code = '400';
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                          context.message.statusCode = code;
+                        }
+                    description: >-
+                      Se realiza la validación de los parámetros del query de la
+                      solicitud del método.
+                    version: 2.0.0
+                - gatewayscript:
+                    title: jwt-generator
+                    source: >-
+                      buildJWT();
+
+
+                      function buildJWT(){
+                          try{
+                              //Importa los módulos de la plataforma para manejo de JWT
+                              const jwt = require('jwt');
+                              const jose = require('jose');
+                                      
+                              //Obtiene el tiempo actual del sistema 
+                              const dateTime = parseInt(new Date() / 1000)
+                                      
+                              //Genera payload/claims del JWT
+                              const claims = {
+                                  'iss': context.get("api.properties.issuer"),
+                                  'sub': context.get("api.properties.sub"),
+                                  'token_use': context.get("api.properties.tokenUse"),
+                                  'client_id': context.get("api.properties.clientId"),
+                                  'scope': context.get("api.properties.scope"),
+                                  'exp': dateTime + Number.parseInt(context.get("api.properties.expTime")), // 3600 preproductivos y 120 producción
+                                  'iat': dateTime
+                              };
+                                      
+                              //Construye el nombre interno que le da la plataforma a la llave privada del TLS Profile
+                              const orgName = context.get("api.org.name");
+                              const tlsProfileName = context.get("api.properties.tlsProfile"); //Nombre del TLS Profile que contiene la llave privada 
+                              const catalogName = context.get("api.catalog.name");
+                              const privateKeyName = orgName+"_"+catalogName +"_tlsp-"+tlsProfileName+'V1.0.0-key'; //Concatena todo con los prefijos y sufijos que asigna la plataforma
+                                      
+                              //Construye el header para el JWT
+                              const jwsHdr = jose.createJWSHeader(privateKeyName, 'RS256');
+                              jwsHdr.setProtected('kid', context.get("api.properties.kid")).setProtected('typ', 'JWT');
+                                      
+                              //Prepara el payload/claims y header para firmar el JWT
+                              const encoder = new jwt.Encoder(claims);
+                              encoder.addOperation('sign', jwsHdr); 
+                                      
+                              //Firma el JWT y lo asigna en el header de autorización
+                              encoder.encode(function (error, jwtToken) { 
+                                  context.set('message.headers.Authorization', 'Bearer '+ jwtToken);
+                              });
+                          }catch(error){
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                      }
+                    description: Generación de JWT usando un TLS Client Profile
+                    version: 2.0.0
+                - invoke:
+                    title: invoke
+                    verb: POST
+                    timeout: 5
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error:
+                      - ConnectionError
+                      - OperationError
+                    version: 2.2.0
+                    tls-profile: $(tlsProfile)
+                    target-url: $(endpoint)$(api.operation.path)
+                - parse:
+                    title: parse
+                    version: 2.1.0
+                    parse-settings-reference:
+                      default: apic-default-parsesettings
+                - validate:
+                    title: validate
+                    version: 2.6.0
+                    graphql-error-policy: none
+                    compile-settings: {}
+                    validate-against: definition
+                    definition: '#/components/schemas/registerAcceptanceTermsResponse'
+            - condition: ($operationID() = 'retrieveTermsConditions')
+              execute:
+                - gatewayscript:
+                    title: validate-request
+                    source: >-
+                      const errors = [];      
+
+
+                      validateParameters();
+                            
+                      function validateParameters() {
+                        try {
+                          const app = context.get('client.app.name').trim();
+                          const consumerId = getConsumer(app);
+                          context.set('ctx.consumer', consumerId);
+                            
+                          const requestHeaders = context.get('request.headers');
+                          const headerConstraints = {"authorization":{"in":"header","name":"authorization","required":true,"type":"string"},"ip":{"in":"header","name":"ip","required":true,"type":"string"},"device-id":{"in":"header","name":"device-id","required":true,"type":"string"},"accept":{"in":"header","name":"accept","required":true,"type":"string"},"message-id":{"in":"header","name":"message-id","required":true,"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"}};
+                          validateRequestHeaders(headerConstraints, requestHeaders);
+                          const bodyConstraints = {"requestBody":{"type":"object","properties":{"data":{"type":"object","properties":{"customer":{"type":"object","properties":{"identification":{"type":"object","properties":{"relationshipId":{"type":"string","maxLength":33,"minLength":1}},"required":["relationshipId"]}},"required":["identification"]},"security":{"type":"object","properties":{"confirmId":{"type":"string","maxLength":2000,"minLength":1}},"required":["confirmId"]}},"required":["customer","security"]}},"required":["data"]}};
+                          const getRequestBody = new Promise((resolve, reject) => {
+                            context.message.body.readAsJSON((error, json) => (error) ?
+                              reject(error) :
+                              resolve(json));
+                          });
+
+                          const requestBodyValidation = (requestBody) => {
+                            validateTags(bodyConstraints, requestBody);
+                            
+                            if (errors.length > 0) {
+                              context.set('ctx.errors', errors);
+                              throwParameterError('ParametersException');
+                            }
+                          }
+
+                          getRequestBody.then(requestBodyValidation, handleError);
+                          
+
+                          if (errors.length > 0) {
+                            context.set('ctx.errors', errors);
+                            throwParameterError('ParametersException');
+                          }
+
+                        } catch (e) {
+                          handleError(e)
+                        }
+                      }
+                              
+                      function validateRequestHeaders(constraints,
+                      requestHeaders) {
+                          const constraintsTags = Object.entries(constraints);
+                          const validation = (constraintsTags.map((constraint) => {
+                            const [constraintName, constraintValue] = constraint;
+                            const tagToValidate = Object.entries(requestHeaders)
+                              .find(tag => tag[0].toUpperCase() === constraintName.toUpperCase());
+                            if (!tagToValidate) {
+                              const detail = `Parámetro ${constraintName} es requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            return validatePrimitives(constraintValue, tagToValidate);
+                          })).every(Boolean) ? true : false;
+                          return validation;
+                        }
+
+                      function validateTags(constraints, request) {
+                          let validation;
+                          const tagConstraints = Object.entries(constraints);
+                          const requestTagNames = Object.keys(request);
+
+                          tagConstraints.forEach((tagConstraint) => {
+                            const [tagConstraintName, tagConstraintValue] = tagConstraint;
+
+                            if (tagConstraintValue.properties ||
+                              (tagConstraintValue.items && tagConstraintValue.items.properties)) {
+                              const { required, properties } = (tagConstraintValue.properties)
+                                ? tagConstraintValue
+                                : tagConstraintValue.items;
+
+                              const validTagNames = Object.keys(properties);
+
+                              if (required) {
+                                validateRequiredTags(required, requestTagNames);
+                              }
+
+                              validation = (requestTagNames.map((requestTagName) => {
+                                return validateTag(validTagNames, requestTagName, properties,
+                                  request[requestTagName]);
+
+                              })).every(Boolean) ? true : false;
+                            } else {
+                              if (tagConstraintValue.required && !requestTagNames.includes(tagConstraintName)) {
+                                const detail = `Parámetro ${tagConstraintName} requerido.`;
+                                const code = 'SA400';
+                                errors.push({ code, detail });
+                              } else {
+                                const requestTagTovalidate = Object.entries(request)
+                                  .filter((recuestField) => recuestField[0] === tagConstraintName);
+                                if (requestTagTovalidate) {
+                                  validation = validatePrimitives(
+                                    constraints[tagConstraintName],
+                                    requestTagTovalidate[0]
+                                  );
+                                }
+                              }
+                            }
+                          });
+                          return validation;
+                        }
+
+                      function validateTag(validTagNames, requestTagName,
+                      constraints, requestObject) {
+                          if (!validTagNames.includes(requestTagName)) {
+                            const detail = `Parámetro ${requestTagName} no es un tag válido`;
+                            const code = 'SA400';
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const tagConstraint = {};
+                          if (Array.isArray(requestObject)) {
+                            if (typeof requestObject[0] !== 'object') {
+                              return validatePrimitives(
+                                constraints[requestTagName],
+                                [requestTagName, requestObject]
+                              );
+                            }
+                            return (requestObject.map((item) => {
+                              tagConstraint[requestTagName] = constraints[requestTagName];
+                              return validateTags(tagConstraint, item);
+                            })).every(Boolean) ? true : false;
+                          }
+
+                          if (typeof requestObject !== 'object') {
+                            return validatePrimitives(
+                              constraints[requestTagName],
+                              [requestTagName, requestObject]
+                            );
+                          }
+                          tagConstraint[requestTagName] = constraints[requestTagName];
+                          return validateTags(tagConstraint, requestObject);
+                        }
+
+                      function validateRequiredTags(requiredTags,
+                      requestTagNames) {
+                          requiredTags.forEach((requiredTag) => {
+                            if (!requestTagNames.includes(requiredTag)) {
+                              const detail = `Parámetro ${requiredTag} requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                            }
+                          });
+                        }
+
+                      function validatePrimitives(constraint, entrie) {
+                          const value = entrie[1];
+                          const isArray = Array.isArray(value);
+                          if (isArray) {
+                            if (value.length < 1) {
+                              const code = 'SA400';
+                              const detail = `El arreglo ${entrie[0]} debe tener por lo mennos un valor`;
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            if (constraint.items.type === 'string') {
+                              return validateStringArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'number') {
+                              return validateNumberArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'integer') {
+                              return validateIntegerArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'boolean') {
+                              return validateBooleanArray(constraint.items, entrie);
+                            }
+                          }
+                          if (constraint.type === 'string') {
+                            return validateString(constraint, entrie);
+                          }
+                          if (constraint.type === 'number') {
+                            return validateNumber(constraint, entrie);
+                          }
+                          if (constraint.type === 'integer') {
+                            return validateInteger(constraint, entrie);
+                          }
+                          if (constraint.type === 'boolean') {
+                            return validateBoolean(constraint, entrie);
+                          }
+                        }
+
+                      function validateString(constraint, entrie) {
+                          const code = 'SA400';
+                          const type = 'string';
+                          const [name, value] = entrie;
+                          const { minLength, maxLength, pattern } = constraint;
+                          const enumConstraints = constraint.enum;
+                          const validPattern = (pattern) ? new RegExp(pattern) : null;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo ${type}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (validPattern && !validPattern.test(value)) {
+                            const detail = `El valor del parámetro ${name} no cumple con la expresión regular`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (minLength && value.length < minLength) {
+                            const detail = `Longitud del parámetro ${name} es menor a la lógitud mínima esperada: ${minLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (maxLength && value.length > maxLength) {
+                            const detail = `Longitud del parámetro ${name} es mayor a la lógitud máxima esperada: ${maxLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+
+                          return true;
+                        }
+
+                      function validateStringArray(constraint, tagToValidate) {
+                          const [parameterName, arrayString] = tagToValidate;
+                          return (arrayString.map(stringValue =>
+                            validateString(constraint, [parameterName, stringValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function countDigits(number) {
+                          const numberString = number.toString();
+                          const [integers, decimals = ''] = numberString.split('.');
+                          return { integers: integers.length, decimals: decimals.length };
+                        }
+
+                      function validateNumber(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo double`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const { integers, decimals } = countDigits(value);
+                          const { integers: expectedIntegers, decimals: expectedDecimals } = countDigits(maximum);
+                          const expectedDigitsValidation = integers <= expectedIntegers && decimals <= expectedDecimals;
+                          if (!expectedDigitsValidation) {
+                            const detail = `El valor del parámetro ${name} espera máximo ${expectedIntegers} dígitos enteros y máximo ${expectedDecimals} dígitos decimales`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateNumberArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateNumber(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateInteger(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { minimum, maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo integer`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value < minimum) {
+                            const detail = `El valor del parámetro ${name} es menor que el valor permitido: ${minimum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value > maximum) {
+                            const detail = `El valor del parámetro ${name} es mayor que el valor permitido: ${maximum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateIntegerArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateInteger(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateBoolean(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { type } = constraint;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo boolean`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateBooleanArray(constraint, tagToValidate) {
+                          const [parameterName, arrayBoolean] = tagToValidate;
+                          return (arrayBoolean.map(booleanValue => validateBoolean(constraint, [parameterName,
+                            booleanValue]))).every(Boolean) ? true : false;
+                        }
+
+                      function getConsumer(appName) {
+                          try {
+                            const consumerId = appName.split('-')[1];
+                            if (!consumerId) {
+                              const detail = 'Identificación de aplicación inválida';
+                              const code = 'SA409';
+                              errors.push({ code, detail });
+                              context.set('ctx.errors', errors);
+                            }
+                            return consumerId;
+                          } catch (exception) {
+                            const detail = 'Identificación de aplicación inválida';
+                            const code = 'SA409';
+                            errors.push({ code, detail });
+                            context.set('ctx.errors', errors);
+                          }
+                        }
+
+                      function handleError(e) {
+                          const detail = e.message;
+                          const code = 'SA500';
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwParameterError('ParametersException');
+                        }
+
+                      function throwParameterError(errorName) {
+                          const description = 'Bad Request';
+                          const code = '400';
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                          context.message.statusCode = code;
+                        }
+                    description: >-
+                      Se realiza la validación de los parámetros del query de la
+                      solicitud del método.
+                    version: 2.0.0
+                - gatewayscript:
+                    title: jwt-generator
+                    source: >-
+                      buildJWT();
+
+
+                      function buildJWT(){
+                          try{
+                              //Importa los módulos de la plataforma para manejo de JWT
+                              const jwt = require('jwt');
+                              const jose = require('jose');
+                                      
+                              //Obtiene el tiempo actual del sistema 
+                              const dateTime = parseInt(new Date() / 1000)
+                                      
+                              //Genera payload/claims del JWT
+                              const claims = {
+                                  'iss': context.get("api.properties.issuer"),
+                                  'sub': context.get("api.properties.sub"),
+                                  'token_use': context.get("api.properties.tokenUse"),
+                                  'client_id': context.get("api.properties.clientId"),
+                                  'scope': context.get("api.properties.scope"),
+                                  'exp': dateTime + Number.parseInt(context.get("api.properties.expTime")), // 3600 preproductivos y 120 producción
+                                  'iat': dateTime
+                              };
+                                      
+                              //Construye el nombre interno que le da la plataforma a la llave privada del TLS Profile
+                              const orgName = context.get("api.org.name");
+                              const tlsProfileName = context.get("api.properties.tlsProfile"); //Nombre del TLS Profile que contiene la llave privada 
+                              const catalogName = context.get("api.catalog.name");
+                              const privateKeyName = orgName+"_"+catalogName +"_tlsp-"+tlsProfileName+'V1.0.0-key'; //Concatena todo con los prefijos y sufijos que asigna la plataforma
+                                      
+                              //Construye el header para el JWT
+                              const jwsHdr = jose.createJWSHeader(privateKeyName, 'RS256');
+                              jwsHdr.setProtected('kid', context.get("api.properties.kid")).setProtected('typ', 'JWT');
+                                      
+                              //Prepara el payload/claims y header para firmar el JWT
+                              const encoder = new jwt.Encoder(claims);
+                              encoder.addOperation('sign', jwsHdr); 
+                                      
+                              //Firma el JWT y lo asigna en el header de autorización
+                              encoder.encode(function (error, jwtToken) { 
+                                  context.set('message.headers.Authorization', 'Bearer '+ jwtToken);
+                              });
+                          }catch(error){
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                      }
+                    description: Generación de JWT usando un TLS Client Profile
+                    version: 2.0.0
+                - invoke:
+                    title: invoke
+                    verb: POST
+                    timeout: 5
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error:
+                      - ConnectionError
+                      - OperationError
+                    version: 2.2.0
+                    tls-profile: $(tlsProfile)
+                    target-url: $(endpoint)$(api.operation.path)
+                - parse:
+                    title: parse
+                    version: 2.1.0
+                    parse-settings-reference:
+                      default: apic-default-parsesettings
+                - validate:
+                    title: validate
+                    version: 2.6.0
+                    graphql-error-policy: none
+                    compile-settings: {}
+                    validate-against: definition
+                    definition: '#/components/schemas/retrieveTermsConditionsResponse'
+            - condition: ($operationID() = 'retrieveDetailsSubscription')
+              execute:
+                - gatewayscript:
+                    title: validate-request
+                    source: >-
+                      const errors = [];      
+
+
+                      validateParameters();
+                            
+                      function validateParameters() {
+                        try {
+                          const app = context.get('client.app.name').trim();
+                          const consumerId = getConsumer(app);
+                          context.set('ctx.consumer', consumerId);
+                            
+                          const requestHeaders = context.get('request.headers');
+                          const headerConstraints = {"authorization":{"in":"header","name":"authorization","required":true,"type":"string"},"ip":{"in":"header","name":"ip","required":true,"type":"string"},"device-id":{"in":"header","name":"device-id","required":true,"type":"string"},"accept":{"in":"header","name":"accept","required":true,"type":"string"},"message-id":{"in":"header","name":"message-id","required":true,"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"}};
+                          validateRequestHeaders(headerConstraints, requestHeaders);
+                          const bodyConstraints = {"requestBody":{"type":"object","properties":{"data":{"type":"object","properties":{"customer":{"type":"object","properties":{"identification":{"type":"object","properties":{"relationshipId":{"type":"string","maxLength":33,"minLength":1}},"required":["relationshipId"]}},"required":["identification"]}},"required":["customer"]}},"required":["data"]}};
+                          const getRequestBody = new Promise((resolve, reject) => {
+                            context.message.body.readAsJSON((error, json) => (error) ?
+                              reject(error) :
+                              resolve(json));
+                          });
+
+                          const requestBodyValidation = (requestBody) => {
+                            validateTags(bodyConstraints, requestBody);
+                            
+                            if (errors.length > 0) {
+                              context.set('ctx.errors', errors);
+                              throwParameterError('ParametersException');
+                            }
+                          }
+
+                          getRequestBody.then(requestBodyValidation, handleError);
+                          
+
+                          if (errors.length > 0) {
+                            context.set('ctx.errors', errors);
+                            throwParameterError('ParametersException');
+                          }
+
+                        } catch (e) {
+                          handleError(e)
+                        }
+                      }
+                              
+                      function validateRequestHeaders(constraints,
+                      requestHeaders) {
+                          const constraintsTags = Object.entries(constraints);
+                          const validation = (constraintsTags.map((constraint) => {
+                            const [constraintName, constraintValue] = constraint;
+                            const tagToValidate = Object.entries(requestHeaders)
+                              .find(tag => tag[0].toUpperCase() === constraintName.toUpperCase());
+                            if (!tagToValidate) {
+                              const detail = `Parámetro ${constraintName} es requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            return validatePrimitives(constraintValue, tagToValidate);
+                          })).every(Boolean) ? true : false;
+                          return validation;
+                        }
+
+                      function validateTags(constraints, request) {
+                          let validation;
+                          const tagConstraints = Object.entries(constraints);
+                          const requestTagNames = Object.keys(request);
+
+                          tagConstraints.forEach((tagConstraint) => {
+                            const [tagConstraintName, tagConstraintValue] = tagConstraint;
+
+                            if (tagConstraintValue.properties ||
+                              (tagConstraintValue.items && tagConstraintValue.items.properties)) {
+                              const { required, properties } = (tagConstraintValue.properties)
+                                ? tagConstraintValue
+                                : tagConstraintValue.items;
+
+                              const validTagNames = Object.keys(properties);
+
+                              if (required) {
+                                validateRequiredTags(required, requestTagNames);
+                              }
+
+                              validation = (requestTagNames.map((requestTagName) => {
+                                return validateTag(validTagNames, requestTagName, properties,
+                                  request[requestTagName]);
+
+                              })).every(Boolean) ? true : false;
+                            } else {
+                              if (tagConstraintValue.required && !requestTagNames.includes(tagConstraintName)) {
+                                const detail = `Parámetro ${tagConstraintName} requerido.`;
+                                const code = 'SA400';
+                                errors.push({ code, detail });
+                              } else {
+                                const requestTagTovalidate = Object.entries(request)
+                                  .filter((recuestField) => recuestField[0] === tagConstraintName);
+                                if (requestTagTovalidate) {
+                                  validation = validatePrimitives(
+                                    constraints[tagConstraintName],
+                                    requestTagTovalidate[0]
+                                  );
+                                }
+                              }
+                            }
+                          });
+                          return validation;
+                        }
+
+                      function validateTag(validTagNames, requestTagName,
+                      constraints, requestObject) {
+                          if (!validTagNames.includes(requestTagName)) {
+                            const detail = `Parámetro ${requestTagName} no es un tag válido`;
+                            const code = 'SA400';
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const tagConstraint = {};
+                          if (Array.isArray(requestObject)) {
+                            if (typeof requestObject[0] !== 'object') {
+                              return validatePrimitives(
+                                constraints[requestTagName],
+                                [requestTagName, requestObject]
+                              );
+                            }
+                            return (requestObject.map((item) => {
+                              tagConstraint[requestTagName] = constraints[requestTagName];
+                              return validateTags(tagConstraint, item);
+                            })).every(Boolean) ? true : false;
+                          }
+
+                          if (typeof requestObject !== 'object') {
+                            return validatePrimitives(
+                              constraints[requestTagName],
+                              [requestTagName, requestObject]
+                            );
+                          }
+                          tagConstraint[requestTagName] = constraints[requestTagName];
+                          return validateTags(tagConstraint, requestObject);
+                        }
+
+                      function validateRequiredTags(requiredTags,
+                      requestTagNames) {
+                          requiredTags.forEach((requiredTag) => {
+                            if (!requestTagNames.includes(requiredTag)) {
+                              const detail = `Parámetro ${requiredTag} requerido`;
+                              const code = 'SA400';
+                              errors.push({ code, detail });
+                            }
+                          });
+                        }
+
+                      function validatePrimitives(constraint, entrie) {
+                          const value = entrie[1];
+                          const isArray = Array.isArray(value);
+                          if (isArray) {
+                            if (value.length < 1) {
+                              const code = 'SA400';
+                              const detail = `El arreglo ${entrie[0]} debe tener por lo mennos un valor`;
+                              errors.push({ code, detail });
+                              return false;
+                            }
+                            if (constraint.items.type === 'string') {
+                              return validateStringArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'number') {
+                              return validateNumberArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'integer') {
+                              return validateIntegerArray(constraint.items, entrie);
+                            }
+                            if (constraint.items.type === 'boolean') {
+                              return validateBooleanArray(constraint.items, entrie);
+                            }
+                          }
+                          if (constraint.type === 'string') {
+                            return validateString(constraint, entrie);
+                          }
+                          if (constraint.type === 'number') {
+                            return validateNumber(constraint, entrie);
+                          }
+                          if (constraint.type === 'integer') {
+                            return validateInteger(constraint, entrie);
+                          }
+                          if (constraint.type === 'boolean') {
+                            return validateBoolean(constraint, entrie);
+                          }
+                        }
+
+                      function validateString(constraint, entrie) {
+                          const code = 'SA400';
+                          const type = 'string';
+                          const [name, value] = entrie;
+                          const { minLength, maxLength, pattern } = constraint;
+                          const enumConstraints = constraint.enum;
+                          const validPattern = (pattern) ? new RegExp(pattern) : null;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo ${type}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (validPattern && !validPattern.test(value)) {
+                            const detail = `El valor del parámetro ${name} no cumple con la expresión regular`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (minLength && value.length < minLength) {
+                            const detail = `Longitud del parámetro ${name} es menor a la lógitud mínima esperada: ${minLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (maxLength && value.length > maxLength) {
+                            const detail = `Longitud del parámetro ${name} es mayor a la lógitud máxima esperada: ${maxLength}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+
+                          return true;
+                        }
+
+                      function validateStringArray(constraint, tagToValidate) {
+                          const [parameterName, arrayString] = tagToValidate;
+                          return (arrayString.map(stringValue =>
+                            validateString(constraint, [parameterName, stringValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function countDigits(number) {
+                          const numberString = number.toString();
+                          const [integers, decimals = ''] = numberString.split('.');
+                          return { integers: integers.length, decimals: decimals.length };
+                        }
+
+                      function validateNumber(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo double`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          const { integers, decimals } = countDigits(value);
+                          const { integers: expectedIntegers, decimals: expectedDecimals } = countDigits(maximum);
+                          const expectedDigitsValidation = integers <= expectedIntegers && decimals <= expectedDecimals;
+                          if (!expectedDigitsValidation) {
+                            const detail = `El valor del parámetro ${name} espera máximo ${expectedIntegers} dígitos enteros y máximo ${expectedDecimals} dígitos decimales`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateNumberArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateNumber(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateInteger(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { minimum, maximum } = constraint;
+                          const enumConstraints = constraint.enum;
+                        
+                          if (typeof value !== 'number') {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo integer`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (enumConstraints && !enumConstraints.includes(value)) {
+                            const detail = `El valor del parámetro ${name} no hace parte de los valores válidos`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value < minimum) {
+                            const detail = `El valor del parámetro ${name} es menor que el valor permitido: ${minimum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          if (value > maximum) {
+                            const detail = `El valor del parámetro ${name} es mayor que el valor permitido: ${maximum}`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateIntegerArray(constraint, tagToValidate) {
+                          const [parameterName, arrayNumber] = tagToValidate;
+                          return (arrayNumber.map(numberValue =>
+                            validateInteger(constraint, [parameterName, numberValue])))
+                            .every(Boolean) ? true : false;
+                        }
+
+                      function validateBoolean(constraint, tagToValidate) {
+                          const code = 'SA400';
+                          const [name, value] = tagToValidate;
+                          const { type } = constraint;
+
+                          if (typeof value !== type) {
+                            const detail = `El valor del parámetro ${name} se espera que sea de tipo boolean`;
+                            errors.push({ code, detail });
+                            return false;
+                          }
+                          return true;
+                        }
+
+                      function validateBooleanArray(constraint, tagToValidate) {
+                          const [parameterName, arrayBoolean] = tagToValidate;
+                          return (arrayBoolean.map(booleanValue => validateBoolean(constraint, [parameterName,
+                            booleanValue]))).every(Boolean) ? true : false;
+                        }
+
+                      function getConsumer(appName) {
+                          try {
+                            const consumerId = appName.split('-')[1];
+                            if (!consumerId) {
+                              const detail = 'Identificación de aplicación inválida';
+                              const code = 'SA409';
+                              errors.push({ code, detail });
+                              context.set('ctx.errors', errors);
+                            }
+                            return consumerId;
+                          } catch (exception) {
+                            const detail = 'Identificación de aplicación inválida';
+                            const code = 'SA409';
+                            errors.push({ code, detail });
+                            context.set('ctx.errors', errors);
+                          }
+                        }
+
+                      function handleError(e) {
+                          const detail = e.message;
+                          const code = 'SA500';
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwParameterError('ParametersException');
+                        }
+
+                      function throwParameterError(errorName) {
+                          const description = 'Bad Request';
+                          const code = '400';
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                          context.message.statusCode = code;
+                        }
+                    description: >-
+                      Se realiza la validación de los parámetros del query de la
+                      solicitud del método.
+                    version: 2.0.0
+                - gatewayscript:
+                    title: jwt-generator
+                    source: >-
+                      buildJWT();
+
+
+                      function buildJWT(){
+                          try{
+                              //Importa los módulos de la plataforma para manejo de JWT
+                              const jwt = require('jwt');
+                              const jose = require('jose');
+                                      
+                              //Obtiene el tiempo actual del sistema 
+                              const dateTime = parseInt(new Date() / 1000)
+                                      
+                              //Genera payload/claims del JWT
+                              const claims = {
+                                  'iss': context.get("api.properties.issuer"),
+                                  'sub': context.get("api.properties.sub"),
+                                  'token_use': context.get("api.properties.tokenUse"),
+                                  'client_id': context.get("api.properties.clientId"),
+                                  'scope': context.get("api.properties.scope"),
+                                  'exp': dateTime + Number.parseInt(context.get("api.properties.expTime")), // 3600 preproductivos y 120 producción
+                                  'iat': dateTime
+                              };
+                                      
+                              //Construye el nombre interno que le da la plataforma a la llave privada del TLS Profile
+                              const orgName = context.get("api.org.name");
+                              const tlsProfileName = context.get("api.properties.tlsProfile"); //Nombre del TLS Profile que contiene la llave privada 
+                              const catalogName = context.get("api.catalog.name");
+                              const privateKeyName = orgName+"_"+catalogName +"_tlsp-"+tlsProfileName+'V1.0.0-key'; //Concatena todo con los prefijos y sufijos que asigna la plataforma
+                                      
+                              //Construye el header para el JWT
+                              const jwsHdr = jose.createJWSHeader(privateKeyName, 'RS256');
+                              jwsHdr.setProtected('kid', context.get("api.properties.kid")).setProtected('typ', 'JWT');
+                                      
+                              //Prepara el payload/claims y header para firmar el JWT
+                              const encoder = new jwt.Encoder(claims);
+                              encoder.addOperation('sign', jwsHdr); 
+                                      
+                              //Firma el JWT y lo asigna en el header de autorización
+                              encoder.encode(function (error, jwtToken) { 
+                                  context.set('message.headers.Authorization', 'Bearer '+ jwtToken);
+                              });
+                          }catch(error){
+                              handleError(error);
+                          }
+                      }
+                          
+                      function handleError(error) {
+                          const detail = error.message;
+                          const code = "SA500";
+                          const errors = [];
+                          errors.push({ code, detail });
+                          context.set('ctx.errors', errors);
+                          throwError({ errorName: "ParametersException" });
+                      }
+                          
+                      function throwError({ errorName = "Default", description =
+                      "Internal Error", code = 500 }) {
+                          context.set("ctx.errorData", { description, code });
+                          context.reject(errorName, description);
+                      }
+                    description: Generación de JWT usando un TLS Client Profile
+                    version: 2.0.0
+                - invoke:
+                    title: invoke
+                    verb: POST
+                    timeout: 5
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error:
+                      - ConnectionError
+                      - OperationError
+                    version: 2.2.0
+                    tls-profile: $(tlsProfile)
+                    target-url: $(endpoint)$(api.operation.path)
+                - parse:
+                    title: parse
+                    version: 2.1.0
+                    parse-settings-reference:
+                      default: apic-default-parsesettings
+                - validate:
+                    title: validate
+                    version: 2.6.0
+                    graphql-error-policy: none
+                    compile-settings: {}
+                    validate-against: definition
+                    definition: '#/components/schemas/retrieveDetailsSubscriptionResponse'
+            - condition: ($operationID() = 'healthOperation')
+              execute: []
+          version: 2.0.0
+    catch:
+      - errors:
+          - ParametersException
+        execute:
+          - gatewayscript:
+              title: parameters-exception
+              source: |-
+                const init = () => {
+                  const meta = {
+                      _messageId: context.get('request.headers.message-id'),
+                      _requestDateTime: context.get('system.datetime') + context.get('system.timezone'),
+                      _applicationId: context.get('client.app.id')
+                  }
+                  context.set('ctx.meta', meta);
+                }
+
+                const parametersExceptionNodeCode = () => {
+                  const errors = context.get('ctx.errors');
+                  const status = 400;
+                  const failure = {
+                    meta: context.get('ctx.meta'),
+                    status,
+                    title: "Bad Request",
+                    errors
+                  };
+
+                  context.set('message.body', failure);
+                  context.set('message.status.code', status);
+                }
+
+                init();
+                parametersExceptionNodeCode();
+              description: ''
+              version: 2.0.0
+        arrayName: execute
+      - errors:
+          - ConnectionError
+        execute:
+          - gatewayscript:
+              title: connection-exception
+              source: |-
+                const init = () => {
+                  const meta = {
+                      _messageId: context.get('request.headers.message-id'),
+                      _requestDateTime: context.get('system.datetime') + context.get('system.timezone'),
+                      _applicationId: context.get('client.app.id')
+                  }
+                  context.set('ctx.meta', meta);
+                }
+
+                const connectionExceptionNodeCode = () => {
+                  const status = 500;
+                  const failure = {
+                    meta: context.get('ctx.meta'),
+                    status,
+                    title: 'Connection Error',
+                    errors: [
+                      {
+                        code: "SA".concat(status),
+                        detail: 'Se ha presentado un error de conexión con el backend'
+                      }
+                    ]
+                  };
+
+                  context.set('message.body', failure);
+                  context.set('message.status.code', status);
+                }
+
+                init();
+                connectionExceptionNodeCode();
+              description: ''
+              version: 2.0.0
+        arrayName: execute
+      - errors:
+          - RuntimeError
+        execute:
+          - gatewayscript:
+              title: jwt-error
+              source: |-
+                const init = () => {
+                  const meta = {
+                      _messageId: context.get('request.headers.message-id'),
+                      _requestDateTime: context.get('system.datetime') + context.get('system.timezone'),
+                      _applicationId: context.get('client.app.id')
+                  }
+                  context.set('ctx.meta', meta);
+                }
+
+                const runtimeExceptionNodeCode = () => {
+                    const statusCode = 401;
+                    const failure = {
+                        meta: context.get('ctx.meta'),
+                        statusCode,
+                        title: 'Unauthorized',
+                        errors: [
+                            {
+                                code: 'SA'.concat(statusCode),
+                                detail: context.get('jwt-validate.error-message')
+                            }
+                        ]
+                    };
+                    context.set('message.body', failure);
+                    context.set('message.status.code', statusCode);
+                }
+
+                init();
+                runtimeExceptionNodeCode();
+              description: ''
+              version: 2.0.0
+        arrayName: execute
+      - errors:
+          - OperationError
+        execute:
+          - parse:
+              title: parse
+              version: 2.1.0
+              parse-settings-reference:
+                default: apic-default-parsesettings
+          - validate:
+              title: validate-operation-error
+              version: 2.6.0
+              graphql-error-policy: none
+              compile-settings: {}
+              validate-against: definition
+              definition: '#/components/schemas/failure'
+        arrayName: execute
+      - errors:
+          - ValidateError
+        execute:
+          - gatewayscript:
+              title: validate-exception
+              source: |-
+                const init = () => {
+                  const meta = {
+                      _messageId: context.get('request.headers.message-id'),
+                      _requestDateTime: context.get('system.datetime') + context.get('system.timezone'),
+                      _applicationId: context.get('client.app.id')
+                  }
+                  context.set('ctx.meta', meta);
+                }
+
+                const validateExceptionNodeCode = () => {
+                    const statusCode = 502;
+                    const failure = {
+                      meta: context.get('ctx.meta'),
+                      statusCode,
+                      title: 'Bad Gateway',
+                      errors: [
+                        {
+                          code: 'SI'.concat(statusCode),
+                          detail: 'Se ha presentado un error por mensaje mal formado desde el backend'
+                        }
+                      ]
+                    };
+                    context.set('message.body', failure);
+                    context.set('message.status.code', statusCode);
+                }
+
+                init();
+                validateExceptionNodeCode();
+              description: ''
+              version: 2.0.0
+        arrayName: execute
+      - default:
+          - gatewayscript:
+              title: default-exception
+              source: |-
+                const init = () => {
+                  const meta = {
+                      _messageId: context.get('request.headers.message-id'),
+                      _requestDateTime: context.get('system.datetime') + context.get('system.timezone'),
+                      _applicationId: context.get('client.app.id')
+                  }
+                  context.set('ctx.meta', meta);
+                }
+                  
+                const defaultExceptionNodeCode = () => {
+                  const statusCode = 500;
+                  const failure = {
+                    meta: context.get('ctx.meta'),
+                    statusCode,
+                    title: 'Internal Server Error',
+                    errors: [
+                      {
+                        code: 'SA'.concat(statusCode),
+                        detail: 'Se ha presentado un error inesperado'
+                      }
+                    ]
+                  };
+                  context.set('message.body', failure);
+                  context.set('message.status.code', statusCode);
+                }
+
+                init();
+                defaultExceptionNodeCode();
+              description: ''
+              version: 2.0.0
+    finally:
+      - gatewayscript:
+          title: filter-headers
+          source: >-
+            const filterHeaders = () => {
+
+            const header_meta = require('header-metadata');
+
+            header_meta.current.headers = {
+              "API-Version": context.get('api.version'),
+              "RateLimit-Limit": context.get('plan.rate-limit')[0].value,
+              "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+              "X-Content-Type-Options": "nosniff",
+              "X-Frame-Options": "DENY",
+              "Cache-Control": "private, no-cache, no-store, max-age=0, no-transform",
+              "Pragma": "no-cache",
+              "Expires": 0,
+              "Content-Security-Policy": "default-src 'self' *.bank.com"
+            }
+
+            context.set('message.headers.Content-Type', 'application/json;
+            charset=utf-8;');
+                
+            const messageId = context.get('request.headers.message-id');
+              if (messageId) {
+                    context.set('message.headers.Message-Id', messageId);
+              }
+            }
+
+            filterHeaders();
+          description: >-
+            Se filtra y configura los valores de la cabecera de respuesta del
+            API.
+          version: 2.0.0
+x-API-Protocol:
+  Protocols: HTTPS
