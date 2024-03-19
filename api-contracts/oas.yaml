@@ -1,12 +1,12 @@
 openapi: 3.0.1
 info:
-  title: Nombre Producto API - Nombre API
+  title: Red Hat - Red Hat API
   version: 0.0.0
   description: >-
     Alcance funcional de toda la API. No es preciso entrar en detalles particulares de las operaciones, sino una descripcipon general del contexto funcional.
   contact:
     name: Developers Support
-    email: soporteapisinternas@bank.com.co
+    email: no-answer@redhat.com
 servers:
   - url: >-
       https://$(catalog.host)/v?/bian-business-area/business-domain/service-domain/nombre-prducto-api/nombre-api
@@ -14,7 +14,6 @@ paths:
   /examplePath1:
     post: # REEMPLAZAR POR VERBO HTTP EN MINÚSCULA; get, post, put, patch. delete...
       operationId: nombreFuncionalOperacion
-      x-api-type: proxy-jwt
       summary: >-
         Alcance funcional de la capacidad/operación resumido. Resaltar lo más esencial.
       description: >
@@ -69,7 +68,6 @@ paths:
         required: true
       responses:
         '200':
-          x-success-response: Successfull
           description: Registro exitoso
           headers:
             Message-Id:
@@ -120,16 +118,10 @@ paths:
               description: 'Formato de mensajería de la API. Ejemplo: application/json.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API message format. Example: application/json.'
             API-Version:
               description: 'Version de la API. Ejemplo: 1.0.0.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API Version. Example: 1.0.0.'
           content:
             application/json:
               schema:
@@ -146,9 +138,6 @@ paths:
                     detail: >-
                       La longitud de la parte entera del parametro trackingId es
                       invalida
-          x-ibm-languages:
-            description:
-              en: Error in the request.
         '401':
           description: Credenciales incorrectas.
           headers:
@@ -158,32 +147,18 @@ paths:
                 trazabilidad de los llamados a las APIs.
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: >-
-                      Message identifier or correlation identifier used for the
-                      traceability of the API calls.
             RateLimit-Limit:
               description: Límite de solicitudes por intervalo de tiempo
               schema:
                 type: number
-                x-ibm-languages:
-                  description:
-                    en: Resquest limit per time interval.
             Content-Type:
               description: 'Formato de mensajería de la API. Ejemplo: application/json.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API message format. Example: application/json.'
             API-Version:
               description: 'Version de la API. Ejemplo: 1.0.0.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API Version. Example: 1.0.0.'
           content:
             application/json:
               schema:
@@ -198,9 +173,6 @@ paths:
                 errors:
                   - code: SA401
                     detail: El consumidor no tiene acceso a la información solicitada
-          x-ibm-languages:
-            description:
-              en: Incorrect credentials.
         '404':
           description: Recurso no encontrado.
           headers:
@@ -210,32 +182,18 @@ paths:
                 trazabilidad de los llamados a las APIs.
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: >-
-                      Message identifier or correlation identifier used for the
-                      traceability of the API calls.
             RateLimit-Limit:
               description: Límite de solicitudes por intervalo de tiempo
               schema:
                 type: number
-                x-ibm-languages:
-                  description:
-                    en: Resquest limit per time interval.
             Content-Type:
               description: 'Formato de mensajería de la API. Ejemplo: application/json.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API message format. Example: application/json.'
             API-Version:
               description: 'Version de la API. Ejemplo: 1.0.0.'
               schema:
                 type: string
-                x-ibm-languages:
-                  description:
-                    en: 'API Version. Example: 1.0.0.'
           content:
             application/json:
               schema:
@@ -250,9 +208,6 @@ paths:
                 errors:
                   - code: BP12700891
                     detail: EL CLIENTE NO TIENE CUENTAS DEL TIPO SOLICITADO
-          x-ibm-languages:
-            description:
-              en: Resource not found.
         '409':
           description: >
             El estado del recurso presenta conflictos con los datos de la
@@ -594,12 +549,10 @@ components:
       type: apiKey
       in: header
       name: Client-Id
-      x-key-type: client_id
     clientSecret:
       type: apiKey
       in: header
       name: Client-Secret
-      x-key-type: client_secret
 tags:
   - name: Monitoring
     description: Operaciones para realizar el monitoreo de la API
