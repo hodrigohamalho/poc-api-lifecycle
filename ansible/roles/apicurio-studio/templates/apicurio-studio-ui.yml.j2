@@ -53,6 +53,8 @@ spec:
               value: ws://apicurio-studio-ws-{{ utils_project }}.apps.{{domain}}:8080
             - name: APICURIO_UI_LOGOUT_REDIRECT_URI
               value: /
+            - name: APICURIO_UI_FEATURE_MICROCKS
+              value: 'true'
             - name: APICURIO_MIN_HEAP
               value: 512m
             - name: APICURIO_MAX_HEAP

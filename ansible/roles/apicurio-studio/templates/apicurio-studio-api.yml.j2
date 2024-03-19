@@ -49,6 +49,12 @@ spec:
               value: postgresql
             - name: APICURIO_DB_CONNECTION_URL
               value: jdbc:postgresql://studio-postgresql:5432/studio
+            - name: APICURIO_MICROCKS_API_URL
+              value: https://microcks-{{ utils_project }}.apps.{{domain}}/api
+            - name: APICURIO_MICROCKS_CLIENT_ID
+              value: microcks-serviceaccount
+            - name: APICURIO_MICROCKS_CLIENT_SECRET
+              value: ab54d329-e435-41ae-a900-ec6b3fe15c54
             - name: APICURIO_HUB_STORAGE_JDBC_TYPE
               value: postgresql9
             - name: APICURIO_DB_USER_NAME
