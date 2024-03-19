@@ -1,0 +1,32 @@
+- name: Install {{ utils_project }} namespace if not exists 
+  k8s:
+    api_version: v1
+    kind: Namespace
+    name: '{{ utils_project }}'
+    state: present
+
+- name: Install Apicurio Studio Image Streams
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'apicurio-image-streams.yml.j2') }}"  
+
+- name: Install Apicurio Studio PostgreSQL
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'apicurio-studio-postgresql.yml.j2') }}"    
+
+- name: Install Apicurio Studio API
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'apicurio-studio-api.yml.j2') }}"
+
+- name: Install Apicurio Studio WS
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'apicurio-studio-ws.yml.j2') }}"  
+
+- name: Install Apicurio Studio UI
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'apicurio-studio-ui.yml.j2') }}"  
+

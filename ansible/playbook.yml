@@ -49,15 +49,13 @@
     #   include_role:
     #     name: microcks
 
-    - name: Install Threescale API Management
-      include_role:
-        name: threescale
-
-
-    # - name: Install Apicurio Studio
+    # - name: Install Threescale API Management
     #   include_role:
-    #     name: apicurio-studio
-    
+    #     name: threescale
+
+    - name: Install Apicurio Studio
+      include_role:
+        name: apicurio-studio
     
     # - name: Install Monitoring
     #   include_role:

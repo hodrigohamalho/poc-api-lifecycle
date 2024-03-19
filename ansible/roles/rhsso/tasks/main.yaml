@@ -129,3 +129,17 @@
     validate_certs: no
     status_code: 201
   ignore_errors: true
+
+- name: Create Apicurio Studio Realm
+  uri: 
+    url: 'https://keycloak-{{ utils_project }}.apps.{{ domain }}/auth/admin/realms'
+    method: POST
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{TKN}}"
+    body: "{{ lookup('file', 'apicurio-studio-realm.json') }}"
+    return_content: yes
+    validate_certs: no
+    status_code: 201
+  ignore_errors: true

@@ -33,10 +33,13 @@ Validation:
 * Enum
 * Tag description in the example of the Body Request request/response
 
+
 == Keycloak
 
+keycloak-lifecycle.apps.cluster-9t7d4.dynamic.redhatworkshops.io
+
 admin
-0lVT3MMGb2DPWA==
+73RhAidL8UrKhA==
 
 == Microcks
 

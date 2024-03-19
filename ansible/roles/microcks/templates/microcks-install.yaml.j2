@@ -7,14 +7,14 @@ spec:
   name: microcks
   version: 1.8.1
   microcks: 
-    url: microcks-lifecycle.apps.cluster-wnz4g.dynamic.redhatworkshops.io
+    url: microcks-lifecycle.apps.{{ domain }}
     replicas: 1
   postman:
     replicas: 1
   keycloak:
     install: false
     realm: microcks
-    url: keycloak-lifecycle.apps.cluster-wnz4g.dynamic.redhatworkshops.io/auth
+    url: keycloak-lifecycle.apps.{{ domain }}/auth
     serviceAccount: microcks-serviceaccount
     serviceAccountCredentials: ab54d329-e435-41ae-a900-ec6b3fe15c54
   mongodb:
@@ -38,5 +38,5 @@ spec:
         install: false
         url: my-cluster-kafka-bootstrap:9092
         schemaRegistry:
-          url: http://service-registry.apps.cluster-wnz4g.dynamic.redhatworkshops.io.router-default.apps.cluster-wnz4g.dynamic.redhatworkshops.io/api
+          url: https://service-registry.apps.{{ domain }}/api
           confluent: false
